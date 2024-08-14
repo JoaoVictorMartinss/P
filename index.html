@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KKKKK</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Garante que o botão NÃO não ultrapasse os limites da tela */
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            position: absolute; /* Permite movimentar o botão em relação ao body */
+        }
+
+        .btn-sim {
+            background-color: #28a745;
+        }
+
+        .btn-nao {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>E a bundinha? vai me da?</h1>
+        <button class="btn btn-sim" onclick="handleSimClick()">SIM</button>
+        <button class="btn btn-nao" id="btnNao">NÃO</button>
+    </div>
+
+    <script>
+        function handleSimClick() {
+            // Redireciona para um vídeo do YouTube
+            window.location.href = 'https://www.youtube.com/watch?v=J4pqBISnvOk'; // Substitua pelo link do vídeo desejado
+        }
+
+        function moveButtonNao() {
+            const btnNao = document.getElementById('btnNao');
+            const bodyWidth = document.body.clientWidth;
+            const bodyHeight = document.body.clientHeight;
+            
+            // Gera novas posições aleatórias
+            const newX = Math.random() * (bodyWidth - btnNao.offsetWidth);
+            const newY = Math.random() * (bodyHeight - btnNao.offsetHeight);
+
+            btnNao.style.left = `${newX}px`;
+            btnNao.style.top = `${newY}px`;
+        }
+
+        let moveInterval;
+
+        // Adiciona evento para mover o botão NÃO ao passar o mouse sobre ele
+        document.getElementById('btnNao').addEventListener('mouseover', function() {
+            moveButtonNao();
+            moveInterval = setInterval(moveButtonNao, 100); // Move o botão a cada 100ms
+        });
+
+        // Remove o intervalo quando o mouse sai do botão NÃO
+        document.getElementById('btnNao').addEventListener('mouseout', function() {
+            clearInterval(moveInterval);
+        });
+
+        // Define posição inicial do botão NÃO
+        document.getElementById('btnNao').style.left = '50%';
+        document.getElementById('btnNao').style.top = '50%';
+        document.getElementById('btnNao').style.transform = 'translate(-50%, -50%)'; // Centraliza o botão inicial
+    </script>
+</body>
+</html>
